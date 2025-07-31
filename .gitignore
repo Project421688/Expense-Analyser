@@ -1,0 +1,92 @@
+# .gitignore
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build artifacts
+build/
+dist/
+out/
+
+# Production cache
+.cache/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.jks
+*.pem
+*.p12
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn
+yarn.lock
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Parcel cache
+.parcel-cache/
+
+# Next.js
+.next/
+out/
+
+# Serverless directories
+.serverless/
+
+# Vercel
+.vercel/
+
+# Lerna
+lerna-debug.log*
+
+# Lock files
+package-lock.json
