@@ -1,61 +1,52 @@
 // src/App.js
-import React, { useState, useEffect } from 'react';
-import Sidebar from './components/Sidebar';
-import TopBar from './components/TopBar';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
-import Messages from './pages/Messages';
-import Help from './pages/Help';
+import Contact from './pages/Contact';
+import Egg from './pages/Egg';
+import Meat from './pages/Meat';
+import Charcoal from './pages/Charcoal';
+import Leaf from './pages/Leaf';
+import Orders from './pages/Orders';
+import Bills from './pages/Bills';
+import Borrows from './pages/Borrows';
+import Grocery from './pages/Grocery';
+
 import './App.css';
 
-function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activePage, setActivePage] = useState('home');
-  const [pageTitle, setPageTitle] = useState('Home');
-  
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-  
-  const pages = {
-    home: <Home />,
-    profile: <Profile />,
-    settings: <Settings />,
-    messages: <Messages />,
-    help: <Help />
-  };
+export default function App() {
+  const location = useLocation();
 
-  // Update page title when active page changes
-  useEffect(() => {
-    const titles = {
-      home: 'Home',
-      profile: 'Profile',
-      settings: 'Settings',
-      messages: 'Messages',
-      help: 'Help Center'
-    };
-    setPageTitle(titles[activePage] || 'App');
-  }, [activePage]);
+  // Simple page title mapping
+  const getPageTitle = () => {
+    switch (location.pathname) {
+      case '/egg': return 'Egg Page';
+      case '/meat': return 'Meat Page';
+      case '/charcoal': return 'Charcoal Page';
+      case '/leaf': return 'Leaf Page';
+      case '/orders': return 'Orders Page';
+      case '/bills': return 'Bills Page';
+      case '/borrows': return 'Borrows Page';
+      case '/grocery': return 'Grocery Page';
+      case '/contact': return 'Contact Page';
+      default: return 'Home Page';
+    }
+  };
 
   return (
-    <div className="app">
-      <TopBar 
-        pageTitle={pageTitle} 
-        toggleSidebar={toggleSidebar} 
-        sidebarOpen={sidebarOpen}
-      />
-      <Sidebar 
-        isOpen={sidebarOpen} 
-        activePage={activePage} 
-        setActivePage={setActivePage}
-        toggleSidebar={toggleSidebar}
-      />
-      <main className={`content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-        {pages[activePage]}
-      </main>
-    </div>
+    <MainLayout pageTitle={getPageTitle()}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/egg" element={<Egg />} />
+        <Route path="/meat" element={<Meat />} />
+        <Route path="/charcoal" element={<Charcoal />} />
+        <Route path="/leaf" element={<Leaf />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/bills" element={<Bills />} />
+        <Route path="/borrows" element={<Borrows />} />
+        <Route path="/grocery" element={<Grocery />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </MainLayout>
   );
 }
-
-export default App;

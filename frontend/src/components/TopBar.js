@@ -1,24 +1,14 @@
-    // src/components/TopBar.js
+// src/components/Topbar.js
 import React from 'react';
 
-const TopBar = ({ pageTitle, toggleSidebar, sidebarOpen }) => {
+export default function Topbar({ onMenuClick, isSidebarOpen, pageTitle }) {
   return (
-    <div className="top-bar">
-      <div className="top-bar-content">
-        <div className="hamburger-container" onClick={toggleSidebar}>
-          <div className={`hamburger-icon ${sidebarOpen ? 'open' : ''}`}>
-            <div className="bar bar1"></div>
-            <div className="bar bar2"></div>
-            <div className="bar bar3"></div>
-          </div>
-        </div>
-        <div className="page-title">
-          <h1>{pageTitle}</h1>
-        </div>
-        
+    <div className="topbar">
+      <div className="topbar-left">
+        <button className="hamburger-btn" onClick={onMenuClick}>☰</button>
+        {isSidebarOpen && <span className="logo-text">Expanse Analyser</span>}
       </div>
+      <div className="topbar-title">{pageTitle}</div>
     </div>
   );
-};
-
-export default TopBar;
+}
