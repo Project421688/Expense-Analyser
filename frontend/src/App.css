@@ -8,80 +8,111 @@
 .layout-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-/* Topbar styles */
+/* Enhanced topbar with double height */
 .topbar {
-  height: 50px;
-  background-color: #222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px; /* Doubled from 50px to 100px */
+  background: linear-gradient(135deg, #2c3e50, #1a1a2e);
   color: white;
   display: flex;
   align-items: center;
-  position: relative; /* so we can position title absolutely */
-  padding: 0 15px;
+  z-index: 1000;
+  padding: 0 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #FFD700;
 }
 
 .topbar-left {
   display: flex;
   align-items: center;
-  z-index: 2; /* make sure it stays on top if overlapping */
+  z-index: 2;
+  height: 100%;
 }
 
 .hamburger-btn {
   background: none;
   border: none;
   color: white;
-  font-size: 20px;
+  font-size: 28px; /* Increased from 20px */
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Increased from 30px */
+  height: 40px; /* Increased from 30px */
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+  transform: scale(1.1);
+  color: #FFD700;
 }
 
 .logo-text {
-  margin-left: 10px;
+  margin-left: 15px;
   font-weight: bold;
+  font-size: 24px; /* Increased from 18px */
+  letter-spacing: 1px;
+  background: linear-gradient(to right, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Center the title */
+/* Enhanced title with larger size and styling */
 .topbar-title {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 16px;
-  font-weight: bold;
-  white-space: nowrap; /* prevent breaking into multiple lines */
+  font-size: 28px; /* Increased from 16px */
+  font-weight: 700;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #FFD700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to right, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-
-/* Body layout */
+/* Body layout - adjusted for taller topbar */
 .layout-body {
   display: flex;
   flex: 1;
-  
   min-height: 0;
+  margin-top: 100px; /* Adjusted from 50px to match new height */
+  height: calc(100vh - 100px); /* Adjusted from 50px */
 }
 
-
-/* Sidebar styles */
 /* Sidebar styles */
 .sidebar {
   background-color: #FFFF00;
   color: #333;
   transition: width 0.3s ease;
-
   height: 100%;
   box-sizing: border-box;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .sidebar.closed {
   width: 0;
+  overflow: hidden;
 }
 
 .sidebar.open {
-  width: 200px;
-  padding: 20px 10px;
-  background-color: #FFFF00;
-  
+  width: 220px; /* Slightly wider */
+  padding: 25px 15px; /* Increased padding */
+  background: linear-gradient(to bottom, #EA5B6F, #FFD700);
 }
 
 .sidebar-content nav {
@@ -90,19 +121,94 @@
 }
 
 .sidebar-content nav a {
-  color: #333;
+  color: #222;
   text-decoration: none;
-  padding: 8px 0;
+  padding: 14px 18px; /* Increased padding */
+  margin: 8px 0; /* Increased margin */
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Increased gap */
+  font-weight: 600;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-left: 4px solid transparent;
 }
 
 .sidebar-content nav a:hover {
-  text-decoration:solid;
-  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateX(8px);
+  border-left: 4px solid #222;
+}
+
+.sidebar-content nav a i {
+  font-size: 22px; /* Increased from 18px */
+  width: 28px; /* Increased from 24px */
+  text-align: center;
 }
 
 /* Page content */
 .page-content {
   flex: 1;
-  padding: 20px;
-  background-color: #f4f4f4;
+  padding: 30px; /* Increased padding */
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  overflow-y: auto;
+}
+
+/* Material icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .topbar-title {
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+  
+  .logo-text {
+    font-size: 20px;
+  }
+  
+  .hamburger-btn {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 0 15px;
+  }
+  
+  .topbar-title {
+    font-size: 18px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .logo-text {
+    font-size: 18px;
+  }
 }
