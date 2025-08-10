@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Egg.css'; 
+import axios from "axios";
 function Egg() {
   // Get current date and time as defaults
   const now = new Date();
@@ -36,10 +37,25 @@ function Egg() {
     }
   }, [ratePerPlate, numPlates]);
 
-  const handleAdd = () => {
-    alert(`Added:\nDate: ${date}\nTime: ${time}\nRate: ${ratePerPlate}\nNumber of Plates: ${numPlates}\nSum: ${sum}`);
-    // Implement further add logic here
+ const handleAdd = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/eggs", {
+        date: date,
+        time: time,
+        rate_per_plate: parseFloat(ratePerPlate),
+        no_of_plate: parseInt(numPlates, 10),
+        amount: parseFloat(sum),
+      });
+
+      alert("Data added successfully!");
+      console.log(res.data);
+      handleCancel();
+    } catch (err) {
+      console.error(err);
+      alert("Error adding record");
+    }
   };
+
 
   const handleCancel = () => {
     // Reset to defaults
