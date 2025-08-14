@@ -68,75 +68,131 @@ function Egg() {
 
  return (
   <div className="egg-page-wrapper">
-    <div className="egg-card">
-      <label className="egg-label">
-        Date:
-        <input
-          type="date"
-          value={date}
-          min={formatDate(minDate)}
-          max={formatDate(now)}
-          onChange={(e) => setDate(e.target.value)}
-          className="egg-input"
-        />
-      </label>
+      <div className="egg-content">
+        {/* 🍳 Egg Card */}
+        <div className="egg-card">
+          <label className="egg-label">
+            Date:
+            <input
+              type="date"
+              value={date}
+              min={formatDate(minDate)}
+              max={formatDate(now)}
+              onChange={(e) => setDate(e.target.value)}
+              className="egg-input"
+            />
+          </label>
 
-      <label className="egg-label">
-        Time:
-        <input
-          type="time"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          className="egg-input"
-        />
-      </label>
+          <label className="egg-label">
+            Time:
+            <input
+              type="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              className="egg-input"
+            />
+          </label>
 
-      <label className="egg-label">
-        Rate per Plate:
-        <input
-          type="number"
-          min="0"
-          step="0.01"
-          value={ratePerPlate}
-          onChange={(e) => setRatePerPlate(e.target.value)}
-          placeholder="Enter rate"
-          className="egg-input"
-        />
-      </label>
+          <label className="egg-label">
+            Rate per Plate:
+            <input
+              type="number"
+              min="0"
+              step="0.01"
+              value={ratePerPlate}
+              onChange={(e) => setRatePerPlate(e.target.value)}
+              placeholder="Enter rate"
+              className="egg-input"
+            />
+          </label>
 
-      <label className="egg-label">
-        Number of Plates:
-        <input
-          type="number"
-          min="0"
-          step="1"
-          value={numPlates}
-          onChange={(e) => setNumPlates(e.target.value)}
-          placeholder="Enter quantity"
-          className="egg-input"
-        />
-      </label>
+          <label className="egg-label">
+            Number of Plates:
+            <input
+              type="number"
+              min="0"
+              step="1"
+              value={numPlates}
+              onChange={(e) => setNumPlates(e.target.value)}
+              placeholder="Enter quantity"
+              className="egg-input"
+            />
+          </label>
 
-      <label className="egg-label">
-        Sum:
-        <input
-          type="number"
-          value={sum}
-          readOnly
-          className="egg-input egg-input-readonly"
-        />
-      </label>
+          <label className="egg-label">
+            Sum:
+            <input
+              type="number"
+              value={sum}
+              readOnly
+              className="egg-input egg-input-readonly"
+            />
+          </label>
 
-      <div className="egg-buttons-wrapper">
-        <button onClick={handleAdd} className="egg-button egg-button-primary">
-          Add
-        </button>
-        <button onClick={handleCancel} className="egg-button egg-button-secondary">
-          Cancel
-        </button>
+          <div className="egg-buttons-wrapper">
+            <button
+              onClick={handleAdd}
+              className="egg-button egg-button-primary"
+            >
+              Add
+            </button>
+            <button
+              onClick={handleCancel}
+              className="egg-button egg-button-secondary"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        {/* 📋 Table: Last 5 Entries */}
+        <div className="egg-table-wrapper">
+          <table className="egg-table">
+            <caption>Last 5 entries</caption>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>No. of Plates</th>
+                <th>Rate/Plate</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025-08-10</td>
+                <td>10</td>
+                <td>5.00</td>
+                <td>50.00</td>
+              </tr>
+              <tr>
+                <td>2025-08-09</td>
+                <td>8</td>
+                <td>4.50</td>
+                <td>36.00</td>
+              </tr>
+              <tr>
+                <td>2025-08-08</td>
+                <td>12</td>
+                <td>5.00</td>
+                <td>60.00</td>
+              </tr>
+              <tr>
+                <td>2025-08-07</td>
+                <td>15</td>
+                <td>4.80</td>
+                <td>72.00</td>
+              </tr>
+              <tr>
+                <td>2025-08-06</td>
+                <td>9</td>
+                <td>4.70</td>
+                <td>42.30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 );
 
 }
