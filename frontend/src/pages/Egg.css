@@ -137,7 +137,23 @@
   color: white;
   text-align: center;
   font-size: 15px;
+  position: relative;
 }
+
+.refresh-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 8px;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.refresh-btn:hover {
+  transform: rotate(90deg);
+}
+
 
 .egg-table th, .egg-table td {
   padding: 10px 14px;
@@ -157,3 +173,73 @@
   background-color: #fff4f4;
   transition: background 0.2s;
 }
+
+/*filter*/
+/* Filter card styles */
+.filter-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  width: 100%;
+  max-width: 480px;
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.filter-caption {
+  font-weight: bold;
+  font-size: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #ff9a9e;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+/**/
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pagination button,
+.pagination .page-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination button:hover:not(:disabled),
+.pagination .page-btn:hover:not(.active) {
+  background: #f8f9fa;
+  border-color: #bbb;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination .page-btn.active {
+  background: #ff9a9e;
+  color: white;
+  border-color: #ff9a9e;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.pagination span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+

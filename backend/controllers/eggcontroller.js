@@ -1,10 +1,31 @@
 const Egg = require('../models/Egg');
 
-// Get all records
+// All + filter + pagination
 exports.getEggs = async (req, res) => {
   try {
-    const eggs = await Egg.findAll();
-    res.json(eggs);
+    const { from, to, page = 1, limit = 10 } = req.query;
+    const whereClause = {};
+
+    if (from && to) {
+      whereClause.date = {
+        [Op.between]: [from, to]
+      };
+    }
+
+    const offset = (parseInt(page) - 1) * parseInt(limit);
+
+    const { count, rows } = await Egg.findAndCountAll({
+      where: whereClause,
+      order: [['date', 'DESC']],
+      limit: parseInt(limit),
+      offset
+    });
+
+    res.json({
+      data: rows,
+      totalPages: Math.ceil(count / limit),
+      currentPage: parseInt(page)
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -20,3 +41,19 @@ exports.addEgg = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Get last 5 records
+exports.getLastFiveEggs = async (req, res) => {
+  try {
+    const eggs = await Egg.findAll({
+      order: [['egg_id', 'DESC']], // newest first
+      limit: 5
+    });
+    res.json(eggs);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+
